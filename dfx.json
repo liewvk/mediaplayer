@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "mplayer_backend": {
+      "main": "src/mplayer_backend/main.mo",
+      "type": "motoko"
+    },
+    "mplayer_frontend": {
+      "dependencies": [
+        "mplayer_backend"
+      ],
+      "source": [
+        "src/mplayer_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "mplayer_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
