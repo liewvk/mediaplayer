@@ -1,26 +1,36 @@
 {
   "canisters": {
-    "mplayer_backend": {
+    "backend": {
+      "type": "motoko",
       "main": "src/mplayer_backend/main.mo",
-      "type": "motoko"
+      "candid": "src/mplayer_backend/main.did"
     },
-    "mplayer_frontend": {
-      "dependencies": [
-        "mplayer_backend"
-      ],
+    "frontend": {
+      "type": "assets",
       "source": [
         "src/mplayer_frontend/dist"
       ],
-      "type": "assets",
-      "workspace": "mplayer_frontend"
+      "build": "cd src/mplayer_frontend && npm install && npm run build"
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    },
+    "ic": {
+      "providers": [
+        "https://mainnet.dfinity.network"
+      ],
+      "type": "persistent"
     }
   },
   "defaults": {
     "build": {
-      "args": "",
       "packtool": ""
     }
   },
-  "output_env_file": ".env",
   "version": 1
 }
+
+

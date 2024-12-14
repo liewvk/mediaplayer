@@ -1,44 +1,17 @@
-import { fileURLToPath, URL } from 'url';
-import react from '@vitejs/plugin-react';
+// src/mplayer_frontend/vite.config.js
 import { defineConfig } from 'vite';
-import environment from 'vite-plugin-environment';
-import dotenv from 'dotenv';
-
-dotenv.config({ path: '../../.env' });
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
+  // Set base to './' to use relative paths
+  base: './',
+  plugins: [react()],
   build: {
-    emptyOutDir: true,
-  },
-  optimizeDeps: {
-    esbuildOptions: {
-      define: {
-        global: "globalThis",
-      },
-    },
+    outDir: 'dist', // Ensure this matches the 'source' in dfx.json
+    sourcemap: false // Disable source maps for production
   },
   server: {
-    proxy: {
-      "/api": {
-        target: "http://127.0.0.1:4943",
-        changeOrigin: true,
-      },
-    },
-  },
-  plugins: [
-    react(),
-    environment("all", { prefix: "CANISTER_" }),
-    environment("all", { prefix: "DFX_" }),
-  ],
-  resolve: {
-    alias: [
-      {
-        find: "declarations",
-        replacement: fileURLToPath(
-          new URL("../declarations", import.meta.url)
-        ),
-      },
-    ],
-    dedupe: ['@dfinity/agent'],
-  },
-});
+    host: '127.0.0.1',
+    port: 5173 // Default Vite port, adjust if necessary
+  }
+});

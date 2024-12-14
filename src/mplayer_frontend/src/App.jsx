@@ -1,31 +1,30 @@
-import { useState } from 'react';
-import { mplayer_backend } from 'declarations/mplayer_backend';
+// App.jsx (example)
+import React, { useState } from 'react';
+import YouTubePlayer from './YouTubePlayer';
+import LocalMediaPlayer from './LocalMediaPlayer';
 
-function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    mplayer_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
+const App = () => {
+  const [youtubeUrl, setYoutubeUrl] = useState('');
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div>
+      <h1>ICP Media Player</h1>
+
+      <h2>Local Media</h2>
+      <LocalMediaPlayer />
+
+      <h2>YouTube</h2>
+      <input
+        type="text"
+        placeholder="Enter a YouTube URL"
+        value={youtubeUrl}
+        onChange={(e) => setYoutubeUrl(e.target.value)}
+        style={{ marginRight: '10px' }}
+      />
+      {youtubeUrl && <YouTubePlayer url={youtubeUrl} />}
+    </div>
   );
-}
+};
 
 export default App;
+
