@@ -1,7 +1,7 @@
 # `mplayer`
 
 This is a media player created with ReactJs and Motoko in ICP.
-
+You may access the media player via https://wozwb-fyaaa-aaaal-qr75q-cai.icp0.io/.
 To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
 
 To learn more before you start working with `mplayer`, see the following documentation available online:
